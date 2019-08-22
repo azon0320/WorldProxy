@@ -1,0 +1,41 @@
+# 基本 ParallelWorld 服务端配置文件
+#
+#
+# 端口设定
+listen: 20050
+#
+#
+# 区块加载速度
+# 每隔一个 tick , ParallelWorld就会清空区块请求队列并从Bukkit中加载区块
+# 指定每次加载的区块数,调低可以缓解Bukkit负荷,但是会影响PE端区块加载速度
+# -1 每次都加载队列中所有区块
+# 5 推荐的值
+chunks_per_tick: -1
+#
+#
+# 区块只读
+# 忽略所有来自PE的方块设置请求
+# 若将PM作为游览&Guest的服务器，可以设成只读
+chunk_readonly: true
+#
+#
+# 数据包打包数量
+# 每隔1个tick , ParallelSocket就会读取N个数据包打包发出
+# 如果N为1，每个tick就只发送一个数据包，1tick=50ms
+# 因此N过小会增加PM的网络等待，N过大需要占用带宽
+# 一个数据包最大占用 65535 个字节 (63kb)
+# -1 读取所有数据包并打包直到超过65535个字节
+# 3 推荐的值
+batch_count: -1
+#
+#
+# 一个 ParallelWorld世界 最大连接数
+# 限制最大连接数以避免服务器带宽和处理器过载
+# -1 不限制
+# 1 推荐的值
+max_channel_per_vworld: -1
+#
+#
+# 只接受本地PM端
+# 远程PM端会占用服务器带宽或出现堵塞
+deny_remote_address: true
